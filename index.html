@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      font-size: 1.2em;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="tempInput" placeholder="Enter temperature" />
+    <select id="unitSelect">
+      <option value="C">Celsius</option>
+      <option value="F">Fahrenheit</option>
+    </select>
+    <button onclick="convertTemp()">Convert</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function convertTemp() {
+      let temp = document.getElementById("tempInput").value;
+      let unit = document.getElementById("unitSelect").value;
+      let resultDiv = document.getElementById("result");
+
+      if (temp === "" || isNaN(temp)) {
+        resultDiv.style.color = "red";
+        resultDiv.textContent = "Please enter a valid number!";
+        return;
+      }
+
+      let converted, unitText;
+      if (unit === "C") {
+        converted = (temp * 9/5) + 32;
+        unitText = "°F";
+      } else {
+        converted = (temp - 32) * 5/9;
+        unitText = "°C";
+      }
+
+      resultDiv.style.color = "black";
+      resultDiv.textContent = converted.toFixed(2) + " " + unitText;
+    }
+  </script>
+</body>
+</html>
